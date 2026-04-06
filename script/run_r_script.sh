@@ -2,8 +2,8 @@
 
 #SBATCH --job-name=sc_rna_analysis
 #SBATCH --account=def-cottenie
-#SBATCH --time=02:00:00
-#SBATCH --cpus-per-task=1
+#SBATCH --time=08:00:00
+#SBATCH --cpus-per-task=8
 #SBATCH --mem=250GB
 #SBATCH --error=%x_%j_error.txt
 #SBATCH --output=%x_%j_output.txt
