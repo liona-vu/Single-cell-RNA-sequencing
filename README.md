@@ -31,7 +31,7 @@ GSEA was performed with clusterProfiler package (v4.18.4) (Yu et al., 2012) usin
 
 
 ## Results
-### UMAP embedding reveals 39 distinct clusters and immune cells
+### UMAP embedding reveals 39 distinct clusters and annotation of immune cells
 To visualize the high-dimensional transcriptomic landscape, UMAP embedding with 36 PCA was performed. This analysis revealed 39 distinct clusters with the Louvain algorithm employed (Figure 1). Clusters 0 and 1 represented the clusters with the highest number of cells. The number of neighbours (20) and PCA dimensions of 36 were chosen to prioritize global structure of the dataset, and to avoid overclustering. The identified UMAP clusters served as the foundational clusters and will be used for further downstream analysis such as DEG and GSEA. 
 
 Next, automatic cell annotation was employed using the Immgen database from the celldex package. Distinct cluster of cell types representing specialized immune cells such as neutrophils, B cells and macrophages were observed (Figure 2). Interestingly, microglia and macrophages were identified as separate cell types but as 1 cluster in Figure 1, highlighting the similarity in gene expression between the two cells. Indeed, macrophages are a specialized type of macrophage that are resident immune cells of the central nervous system. Notably, minimal over clustering was observed between different clusters. To rule out the potential of false positive cell annotations, a diagnostic plot was employed to assess the accuracy of the cell annotation process (Figure 3). Overall, by visual assessment, no major cell types were misidentified. For example, there are blocks that represent the correct cell types for both B cells and epithelial cells. In summary, clustering of cells and cell types were observed during the UMAP embedding and cell annotation.
@@ -61,8 +61,6 @@ Next, feature plots with the top 4 most significant genes with adjusted p value 
 
 <br>
 
-<img width="1022" height="801" alt="Feature_Plots_cluster_2" src="https://github.com/user-attachments/assets/be3ef6a9-813b-4899-adcd-eb59b4050861" />
-
 **Figure 4. Feature plots of the topmost significant genes in cluster 2.** Top genes included genes that play a major role in the classical C1q complement pathway and *Cst3*, a marker for a type of macrophage, microglia. Genes were filtered on p value < 0.05 and log fold change of > 1.  Legend represents gene expression, with the darker blue colour indicating higher expression.
 
 <br>
@@ -72,9 +70,35 @@ DEG analysis was performed for all different pairwise comparisons between naïve
 
 Total number of DEGs for all comparisons with adjusted p values < 0.05 are summarized with the number of both downregulated and upregulated genes determined (Table 1). Interestingly, there were more DEGs in the RM tissue samples where there were more downregulated genes observed compared to upregulated. This may suggest a more dynamic transcriptional change in the RM tissues as compared to other tissue types. 
 
+| Tissue | Comparison | Total DEGs | Upregulated | Downregulated |
+|--------|--------|--------|--------|--------|
+|LNG     |D02	|137	|74		|63
+|LNG     |D05	|107	|74		|33
+|LNG	|D08	|110	|104	|6
+|LNG	|D14	|67		|55		|12
+|OM		|D02	|77		|70		|7
+|OM		|D05	|92		|31		|61
+|OM		|D08	|76		|70		|6
+|OM		|D14	|42		|31		|11
+|RM		|D02	|426	|89		|337
+|RM		|D05	|364	|31		|333
+|RM		|D08	|371	|57		|314
+|RM		|D14	|486	|43		|443
+
+
+**Table 1. Summary of the number of DEGs for each comparison for each tissue type.**  All comparison was performed to day0 (naïve) as a baseline. A log fold change > 0.1 was used. Only significant genes with adjusted p valued < 0.05 were reported.
 
 ### GSEA show biological processes related to preparation of an infection 
-GSEA analysis was performed using the DEG identified from the FindMarkers function and was employed between DEG determined between naïve and day 02.
+GSEA analysis with a focus on biological process was performed using the DEG identified from the FindMarkers function and was employed between DEG determined between naïve and day 02 for all three tissue types. A p value cutoff of 0.05 was used to filter for significant genes corrected with the Benjamini-Hochberg correction applied. GSEA revealed two main biological themes during early influenza infection: 1. biosynthesis and translation, and 2. immune response. Notably, all tissue samples had shared gene set IDs of translation at either presynapse or postsynapse (Figure 8 A-C). In LNG and OM tissues but not RM tissues, gene set IDs revealed terms such as regulation of innate immune response, cellular response to biotic stimulus, and cellular response to molecule of bacterial origin (Figure 8 A, B). The latter term is somewhat unexpected given that influenza A is a virus, not a bacterium. All in all, GSEA revealed processes related to cells prepping for an influenza infection.
+
+<br>
+
+<img width="2502" height="2085" alt="08_GSEA_plot_naive_d02_combined" src="https://github.com/user-attachments/assets/9bc9d44d-9008-4503-9e48-5b449320e50d" />
+
+
+
+**Figure 8.  Gene set enrichment analysis (GSEA) enrichment plots between naïve and day02 post infection of Cluster 02.** Enrichment plots for different tissue samples: A. LNG, B. OM, and C. RM. Curves show enrichment score for top 3 gene sets identified for each comparison. Each tick represents a gene that falls within the ranked list. The lower panel denotes the ranking metric of how each gene is ranked. Only the top 3 significant GO biological process gene sets were plotted. P value cutoff < 0.05 with the Benjamini-Hochberg correction.
+
 
 ## Discussion
 
