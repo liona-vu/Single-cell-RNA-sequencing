@@ -513,6 +513,8 @@ plot_gsea <- function (df_input, day, tissue) {
   
   return(gsea)
 }
+
+#Apply function
 set.seed(420)
 gsea_d02_LNG <- plot_gsea(list_LNG_comparison[["D02"]], "D02", "LNG")
 gsea_d02_OM <- plot_gsea(list_OM_comparison[["D02"]], "D02", "OM")
@@ -522,6 +524,7 @@ gsea_d14_LNG <- plot_gsea(list_LNG_comparison[["D14"]], "D14", "LNG")
 gsea_d14_OM <- plot_gsea(list_OM_comparison[["D14"]], "D14", "OM")
 gsea_d14_RM <- plot_gsea(list_RM_comparison[["D14"]], "D14", "RM")
 
+#Combine and save plots
 plot_list(gglist = list(gsea_d02_LNG, gsea_d02_OM, gsea_d02_RM,
                         gsea_d14_LNG, gsea_d14_OM, gsea_d14_RM), 
           byrow = T, ncol = 2, tag_levels = "A")
